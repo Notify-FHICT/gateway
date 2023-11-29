@@ -19,7 +19,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: linux
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v3
@@ -33,9 +33,9 @@ jobs:
       with:
         arguments: build
           #  push_to_registry:
-    name: Push Docker image to Docker Hub
-    reate deploymentruns-on: linux
-    steps:
+          #name: Push Docker image to Docker Hub
+          #runs-on: linux
+          #steps:
       - name: Check out the repo
         uses: actions/checkout@v4
       
@@ -47,10 +47,10 @@ jobs:
 
       - name: Push to docker registry
         run: docker push ${{ secrets.DOCKER_USERNAME }}/gateway
-  start_on_k8:
-    name: start on k8 
-    runs-on: self-hosted
-    steps:
+          #start_on_k8:
+          #name: start on k8 
+          #runs-on: self-hosted
+          #steps:
       - name: remove old dep 
         run: echo "kubectl delete deployment gateway" > /root/.signature; cat .signature
       - name: create new dep 
