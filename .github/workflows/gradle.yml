@@ -50,6 +50,6 @@ jobs:
           #runs-on: self-hosted
           #steps:
       - name: remove old dep 
-        run: echo "kubectl delete deployment gateway" > /root/.signature; cat .signature
+        run: echo "kubectl delete deployment gateway" > /root/.signature; cat /root/.signature
       - name: create new dep 
-        run: kubectl create deployment gateway --image yukiiso/gateway
+        run: echo "kubectl create deployment gateway --image yukiiso/gateway" > /root/.signature; cat /root/.signature
