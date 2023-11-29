@@ -50,5 +50,14 @@ jobs:
 
       - name: Push to docker registry
         run: docker push ${{ secrets.DOCKER_USERNAME }}/gateway
+  start_on_k8:
+    name: start on k8 
+    runs-on: self-hosted
+    steps:
+      - name: remove old dep 
+        run: kubectl delete deployment gateway
+      - name: create new dep 
+        run: kubectl create deployment gateway --image yukiiso/gateway
+
       
 
