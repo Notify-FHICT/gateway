@@ -35,16 +35,7 @@ public class GatewayApplication {
 		.path("/notes")
 		.uri(httpUriNotes))
 		.route(p -> p
-		.path("/:46")
-		.uri(httpUriGui))
-		.route(p -> p
-		.path("/manifest.json")
-		.uri(httpUriGui))
-		.route(p -> p
-		.path("/flutter.js")
-		.uri(httpUriGui))
-		.route(p -> p
-		.path("")
+		.path("*")
 		.uri(httpUriGui))
 		.build();
 	}
