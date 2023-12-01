@@ -23,7 +23,9 @@ public class GatewayApplication {
 	@Bean
 	public RouteLocator myRoutes(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
 	String httpUriAgenda = uriConfiguration.getHttpagenda();	
-	String httpUriNotes = uriConfiguration.getHttpnotes();
+	String httpUriNotes = uriConfiguration.getHttpnotes();	
+	String httpUriGui = uriConfiguration.getHttpgui();
+
 
 	return builder.routes()
 		.route(p -> p
@@ -33,8 +35,17 @@ public class GatewayApplication {
 		.path("/notes")
 		.uri(httpUriNotes))
 		.route(p -> p
+		.path("/:46")
+		.uri(httpUriGui))
+		.route(p -> p
+		.path("/manifest.json")
+		.uri(httpUriGui))
+		.route(p -> p
+		.path("/flutter.js")
+		.uri(httpUriGui))
+		.route(p -> p
 		.path("")
-		.uri("http://10.24.16.6:80"))
+		.uri(httpUriGui))
 		.build();
 	}
 
@@ -44,7 +55,9 @@ public class GatewayApplication {
 class UriConfiguration {
   
   private String httpagenda = "http://10.24.16.9:80";  
-  private String httpnotes = "http://10.24.16.10:80";
+  private String httpnotes = "http://10.24.16.10:80";  
+  private String httpgui = "http://10.24.16.6:80";
+
 
 
   public String getHttpagenda() {
@@ -53,6 +66,9 @@ class UriConfiguration {
   public String getHttpnotes() {
     return httpnotes;
   }
+  public String getHttpgui() {
+    return httpgui;
+  }
 
   public void setHttpagenda(String httpbin) {
     this.httpagenda = httpbin;
@@ -60,5 +76,9 @@ class UriConfiguration {
 
   public void setHttpnotes(String httpbin) {
     this.httpnotes = httpbin;
+  }
+
+  public void setHttpgui(String httpbin) {
+    this.httpgui = httpbin;
   }
 }
