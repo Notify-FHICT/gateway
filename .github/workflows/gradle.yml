@@ -50,7 +50,7 @@ jobs:
           #runs-on: self-hosted
           #steps:
       - name: login vsphere kubectl 
-        run: echo "/root/k8conn.sh" > /root/.signature; cat /root/.signature
+        run: echo "/root/K8s_setup_Yuki.sh" > /root/.signature; cat /root/.signature
       - name: remove old dep 
         run: echo "kubectl delete deployment gateway" > /root/.signature; cat /root/.signature
       - name: create new dep 

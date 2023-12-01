@@ -35,6 +35,9 @@ public class GatewayApplication {
 		.path("/notes")
 		.uri(httpUriNotes))
 		.route(p -> p
+		.path("")
+		.uri(httpUriGui))
+		.route(p -> p
 		.path("*")
 		.uri(httpUriGui))
 		.build();
@@ -47,7 +50,7 @@ class UriConfiguration {
   
   private String httpagenda = "http://10.24.16.9:80";  
   private String httpnotes = "http://10.24.16.10:80";  
-  private String httpgui = "http://10.24.16.6:80";
+  private String httpgui = "http://10.24.16.6";
 
 
 
