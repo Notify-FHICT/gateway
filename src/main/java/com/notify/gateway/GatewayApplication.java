@@ -22,14 +22,16 @@ public class GatewayApplication {
 
 	@Bean
 	public RouteLocator myRoutes(RouteLocatorBuilder builder, UriConfiguration uriConfiguration) {
-	String httpUri = uriConfiguration.getHttpbin();
+	String httpUriAgenda = uriConfiguration.getHttpagenda();	
+	String httpUriNotes = uriConfiguration.getHttpnotes();
+
 	return builder.routes()
 		.route(p -> p
-		.path("/api/*")
-		.uri(httpUri))
+		.path("/agenda")
+		.uri(httpUriAgenda))
 		.route(p -> p
-		.path("/")
-		.uri(httpUri))
+		.path("/notes")
+		.uri(httpUriNotes))
 		.route(p -> p
 		.path("")
 		.uri("http://10.24.16.6:80"))
@@ -41,13 +43,22 @@ public class GatewayApplication {
 @ConfigurationProperties
 class UriConfiguration {
   
-  private String httpbin = "http://10.24.16.3:80";
+  private String httpagenda = "http://10.24.16.9:80";  
+  private String httpnotes = "http://10.24.16.10:80";
 
-  public String getHttpbin() {
-    return httpbin;
+
+  public String getHttpagenda() {
+    return httpagenda;
+  }
+  public String getHttpnotes() {
+    return httpnotes;
   }
 
-  public void setHttpbin(String httpbin) {
-    this.httpbin = httpbin;
+  public void setHttpagenda(String httpbin) {
+    this.httpagenda = httpbin;
+  }
+
+  public void setHttpnotes(String httpbin) {
+    this.httpnotes = httpbin;
   }
 }
