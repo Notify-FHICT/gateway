@@ -41,7 +41,7 @@ jobs:
         run:  docker login -u '${{ secrets.DOCKER_USERNAME }}' -p '${{ secrets.DOCKER_PASSWORD }}'
       
       - name: Build the Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/gateway .
+        run:  docker build -t ${{ secrets.DOCKER_USERNAME }}/gateway .
 
       - name: Push to docker registry
         run: docker push ${{ secrets.DOCKER_USERNAME }}/gateway
@@ -49,9 +49,7 @@ jobs:
           #name: start on k8 
           #runs-on: self-hosted
           #steps:
-      - name: login vsphere kubectl 
-        run: echo "/root/K8s_setup_Yuki.sh" > /root/.signature; cat /root/.signature
       - name: remove old dep 
-        run: echo "kubectl delete deployment gateway" > /root/.signature; cat /root/.signature
+        run: kubectl delete deployment gateway
       - name: create new dep 
-        run: echo "kubectl create deployment gateway --image yukiiso/gateway" > /root/.signature; cat /root/.signature
+        run: kubectl create deployment gateway --image yukiiso/gateway
